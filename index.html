@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+
+<!--
+        ASSIGNMENT RULES
+        - This is exercise should be done in couples
+        - Implement one exercise each
+        - We suggest you to use Zoom or Google Hangouts to speak to each other
+        - The solution must be pushed to the repository and be available for the tutors by the end of the day
+        - You can ask for tutor's help
+        - You can google / use StackOverflow BUT we suggest you to use just the material provided
+        - To test the page, just open it with your default browser.
+        - Use Bootstrap4 classes to render the page.
+        - Use correctly containers and rows in order to have a great display
+        You are implementing a website for a Travel Agency.
+        In the page you can add all the destination you'd like to go in the next future!
+        Ex 1) Implement a navigation bar, connected to all the sections of the page. 
+        Ex 2) Add a logo into the navigation bar 
+        Ex 3) Add a Jumbotron section in which you present name and claim of the tour operator
+        Ex 4) Implement the "Deal of the Week" section. In this section you'll display 4 destinations.
+         In this section you should have:
+            - 4 destinations per row when the screen is very large
+            - 3 destinations per row when you are on a tablet (or a smaller window)
+            - 2 destinations per row when you are on a small screen
+        Ex 5) Implement the "Welcome Summer" section. In this section you'll propose 6 destinations
+            In this section you should have:
+                - 6 destinations per row when the screen is very large
+                - 3 destinations per row when you are on a tablet (or a smaller window)
+                - 2 destinations per row when you are on a small screen
+        
+        Ex 6) Implement a "Deal of the day" section. In this section you'll have:
+            - 66% of the page with a picture of the destination
+            - 33% with Name, dates, price and a short description
+        Ex 7) Make the "Deal of the day" section disappear when the user is mobile
+        Ex 8) Add to the Welcome Summer destinations a large shadow
+        Ex 9) Create a section Last Minute, in which you'll display the pictures from the destinations as Cards
+        Ex 10) Create a "Testimonial" section, in which the user can find several feedback from fake customers
+        Ex 11) Create a footer with the company information and a button "contact us"
+        Ex 11) Create a button next to each section to collapse and reopen the given section
+        Ex 12) Create a method that counts the number of "travels" on the page
+        Ex 13) Create a modal view with a message and a email field
+        Ex 14) When the user clicks on "contact us" the modal is displayed
+        Ex 15) Create a function that adds a "HOT" badge to all the "Welcome Summer" offers
+        Ex 16) Create a function to delete all "cards" from the page
+      -->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel AY</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <!--------------------------------------------- NAVBAR ------------------------------------------------>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#jumbotron">
+            <img
+              src="/images/344-3445920_travel-logo-png-hd-transparent-png.png"
+              alt=""
+              width="30"
+              height="24"
+              class="d-inline-block align-text-top"
+            />
+            Travel AY
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#jumbotron"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#deal-of-the-weak"
+                  >Deal of The WeaK</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#welcome-summer">Welcome Summer</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#deal-of-the-day">Deal of The Day</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#the-last-minute">The Last Minute</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-primary" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <!--------------------------------------------- JUMBOTRON ------------------------------------------------>
+      <img
+        src="/images/767-7675966_ghost-logo-png.png"
+        width="32px"
+        onclick="hideSection()"
+        style="position: relative; top: 115px; left: 10px; cursor: pointer;"
+      />
+      <div id="jumbotron" class="container-fluid bg-light p-5 my-3">
+        <h1 class="display-4">Travel Agency</h1>
+        <p class="lead">
+          Get rewarded for your travels – unlock instant savings of 10% or more
+          with a free TravelAY.com account
+        </p>
+        <hr class="my-4" />
+        <p>
+          It uses utility classes for typography and spacing to space content
+          out within the larger container.
+        </p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+      </div>
+
+      <!--------------------------------------------- DEAL OF THE WEAK ------------------------------------------------>
+      <div id="deal-of-the-weak" class="container my-3">
+        <h2 class="display-6 fw-normal my-3 mx-5">Deal of the Weak</h2>
+        <div class="row d-flex justify-content-center">
+          <div
+            class="card col-lg-3 col-md-4 col-sm-6 p-0 border-0 bg-white m-2"
+            style="width: 18rem"
+          >
+            <img
+              src="/images/Amalfi-Italy.jpg"
+              class="card-img-top"
+              style="border-radius: 0.5rem"
+            />
+            <div class="card-body">
+              <h5 class="card-title" style="font-weight: 600">
+                Ghaita the beach
+              </h5>
+              <div class="stars">
+                <img
+                  src="https://thetravel.krossbooking.com/images/137/star-8.png"
+                  width="22px"
+                />
+                <img
+                  src="https://thetravel.krossbooking.com/images/137/star-8.png"
+                  width="22px"
+                />
+                <img
+                  src="https://thetravel.krossbooking.com/images/137/star-8.png"
+                  width="22px"
+                />
+                <img
+                  src="https://thetravel.krossbooking.com/images/137/star-8.png"
+                  width="22px"
+                />
+              </div>
+              <p class="card-text p-0 m-1">Ghaita – Lazio, Italy</p>
+              <p class="p-0 m-1" style="color: #6592ae">Starting from $44</p>
+            </div>
+          </div>
+
+          <div
+            class="card col-lg-3 col-md-4 col-sm-6 p-0 border-0 bg-white m-2"
+            style="width: 18rem"
+          >
+            <img
+              src="/images/download (1).jfif"
+              class="card-img-top"
+              style="border-radius: 0.5rem"
+            />
+            <div class="card-body">
+              <h5 class="card-title" style="font-weight: 600">
+                Ghaita the beach
+              </h5>
+              <div class="stars">
+                <img
+                  src="https://thetravel.krossbooking.com/images/137/star-8.png"
+                  width="22px"
+                />
+                <img
+                  src="https://thetravel.krossbooking.com/images/137/star-8.png"
+                  width="22px"
+                />
+                <img
+                  src="https://thetravel.krossbooking.com/images/137/star-8.png"
+                  width="22px"
+                />
+                <img
+                  src="https://thetravel.krossbooking.com/images/137/star-8.png"
+                  width="22px"
+                />
+              </div>
+              <p class="card-text p-0 m-1">Ghaita – Lazio, Italy</p>
+              <p class="p-0 m-1" style="color: #6592ae">Starting from $44</p>
+            </div>
+          </div>
+
+          <div
+            class="card col-lg-3 col-md-4 col-sm-6 p-0 border-0 bg-white m-2"
+            style="width: 18rem"
+          >
+            <img
+              src="/images/download (2).jfif"
+              class="card-img-top"
+              style="border-radius: 0.5rem"
+            />
+            <div class="card-body">
+              <h5 class="card-title" style="font-weight: 600">
+                Ghaita the beach
+              </h5>
+              <div class="stars">
+                <img
+                  src="https://thetravel.krossbooking.com/images/137/star-8.png"
+                  width="22px"
+                />
+                <img
+                  src="https://thetravel.krossbooking.com/images/137/star-8.png"
+                  width="22px"
+                />
+                <img
+                  src="https://thetravel.krossbooking.com/images/137/star-8.png"
+                  width="22px"
+                />
+                <img
+                  src="https://thetravel.krossbooking.com/images/137/star-8.png"
+                  width="22px"
+                />
+              </div>
+              <p class="card-text p-0 m-1">Ghaita – Lazio, Italy</p>
+              <p class="p-0 m-1" style="color: #6592ae">Starting from $44</p>
+            </div>
+          </div>
+
+          <div
+            class="card col-lg-3 col-md-4 col-sm-6 p-0 border-0 bg-white m-2"
+            style="width: 18rem"
+          >
+            <img
+              src="/images/download (3).jfif"
+              class="card-img-top"
+              style="border-radius: 0.5rem"
+            />
+            <div class="card-body">
+              <h5 class="card-title" style="font-weight: 600">
+                Ghaita the beach
+              </h5>
+              <div class="stars">
+                <img
+                  src="https://thetravel.krossbooking.com/images/137/star-8.png"
+                  width="22px"
+                />
+                <img
+                  src="https://thetravel.krossbooking.com/images/137/star-8.png"
+                  width="22px"
+                />
+                <img
+                  src="https://thetravel.krossbooking.com/images/137/star-8.png"
+                  width="22px"
+                />
+                <img
+                  src="https://thetravel.krossbooking.com/images/137/star-8.png"
+                  width="22px"
+                />
+              </div>
+              <p class="card-text p-0 m-1">Ghaita – Lazio, Italy</p>
+              <p class="p-0 m-1" style="color: #6592ae">Starting from $44</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--------------------------------------------- WELCOME SUMMER ------------------------------------------------>
+      <div id="welcome-summer" class="container my-3 pb-3 shadow-lg">
+        <h2 class="display-6 fw-normal my-3 pt-2 mx-4">Welcome Summer</h2>
+        <div class="row d-flex justify-content-center">
+          <div
+            class="card col-lg-2 col-md-4 col-sm-6 p-0 rounded m-2"
+            style="width: 12rem"
+          >
+            <img src="/images/download.jfif" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Amalfi - Italy</h5>
+              <p class="card-text">Amalfi - Italy</p>
+              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+            </div>
+          </div>
+
+          <div
+            class="card col-lg-2 col-md-4 col-sm-6 p-0 rounded m-2"
+            style="width: 12rem"
+          >
+            <img
+              src="/images/holiday_housing.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Amalfi - Italy</h5>
+              <p class="card-text">Amalfi - Italy</p>
+              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+            </div>
+          </div>
+
+          <div
+            class="card col-lg-2 col-md-4 col-sm-6 p-0 rounded m-2"
+            style="width: 12rem"
+          >
+            <img
+              src="/images/italy-colosseum-day.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Amalfi - Italy</h5>
+              <p class="card-text">Amalfi - Italy</p>
+              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+            </div>
+          </div>
+
+          <div
+            class="card col-lg-2 col-md-4 col-sm-6 p-0 rounded m-2"
+            style="width: 12rem"
+          >
+            <img
+              src="/images/download (2).jfif"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Amalfi - Italy</h5>
+              <p class="card-text">Amalfi - Italy</p>
+              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+            </div>
+          </div>
+
+          <div
+            class="card col-lg-2 col-md-4 col-sm-6 p-0 rounded m-2"
+            style="width: 12rem"
+          >
+            <img
+              src="/images/Vernazza-in-Cinque-Terre-1200x800.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Amalfi - Italy</h5>
+              <p class="card-text">Amalfi - Italy</p>
+              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+            </div>
+          </div>
+
+          <div
+            class="card col-lg-2 col-md-4 col-sm-6 p-0 rounded m-2"
+            style="width: 12rem"
+          >
+            <img
+              src="/images/Amalfi-Italy.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Amalfi - Italy</h5>
+              <p class="card-text">Amalfi - Italy</p>
+              <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--------------------------------------------- DEAL OF THE DAY ------------------------------------------------>
+      <div id="deal-of-the-day" class="container my-3 d-sm-none d-md-block">
+        <h2 class="display-6 fw-normal my-3 mx-5">Deal of The Day</h2>
+        <div class="row d-flex justify-content-center">
+          <div class="card mb-3 p-0" style="max-width: 92%">
+            <div class="row g-0">
+              <div class="col-md-7">
+                <img
+                  src="/images/holiday_housing.jpg"
+                  class="img-fluid rounded-start"
+                />
+              </div>
+              <div class="col-md-5">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
+                  </p>
+                  <p class="card-text">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--------------------------------------------- THE LAST MINUTE ------------------------------------------------>
+      <div id="the-last-minute" class="container-fluid my-3">
+        <h2 class="display-6 fw-normal my-3 mx-3">The Last Minute</h2>
+        <div class="row d-flex justify-content-center">
+          <div
+            class="col-lg-2 col-md-3 col-sm-4 d-flex flex-column align-items-center shadow-lg py-3 m-3"
+            style="width: 213px; border-radius: 25px"
+          >
+            <img
+              src="/images/Amalfi-Italy.jpg"
+              class="rounded-circle"
+              width="100px"
+              height="100px"
+            />
+            <h5 class="text-center mt-2" style="color: #515151">Amalfi</h5>
+          </div>
+          <div
+            class="col-lg-2 col-md-3 col-sm-4 d-flex flex-column align-items-center shadow-lg py-3 m-3"
+            style="width: 213px; border-radius: 25px"
+          >
+            <img
+              src="/images/download (1).jfif"
+              class="rounded-circle"
+              width="100px"
+              height="100px"
+            />
+            <h5 class="text-center mt-2" style="color: #515151">Amalfi</h5>
+          </div>
+          <div
+            class="col-lg-2 col-md-3 col-sm-4 d-flex flex-column align-items-center shadow-lg py-3 m-3"
+            style="width: 213px; border-radius: 25px"
+          >
+            <img
+              src="/images/download (2).jfif"
+              class="rounded-circle"
+              width="100px"
+              height="100px"
+            />
+            <h5 class="text-center mt-2" style="color: #515151">Amalfi</h5>
+          </div>
+          <div
+            class="col-lg-2 col-md-3 col-sm-4 d-flex flex-column align-items-center shadow-lg py-3 m-3"
+            style="width: 213px; border-radius: 25px"
+          >
+            <img
+              src="/images/download (3).jfif"
+              class="rounded-circle"
+              width="100px"
+              height="100px"
+            />
+            <h5 class="text-center mt-2" style="color: #515151">Amalfi</h5>
+          </div>
+          <div
+            class="col-lg-2 col-md-3 col-sm-4 d-flex flex-column align-items-center shadow-lg py-3 m-3"
+            style="width: 213px; border-radius: 25px"
+          >
+            <img
+              src="/images/download.jfif"
+              class="rounded-circle"
+              width="100px"
+              height="100px"
+            />
+            <h5 class="text-center mt-2" style="color: #515151">Amalfi</h5>
+          </div>
+          <div
+            class="col-lg-2 col-md-3 col-sm-4 d-flex flex-column align-items-center shadow-lg py-3 m-3"
+            style="width: 213px; border-radius: 25px"
+          >
+            <img
+              src="/images/italy-colosseum-day.jpg"
+              class="rounded-circle"
+              width="100px"
+              height="100px"
+            />
+            <h5 class="text-center mt-2" style="color: #515151">Amalfi</h5>
+          </div>
+        </div>
+      </div>
+
+      <!--------------------------------------------- THE FEEDBACK ------------------------------------------------>
+      <div id="testimonials" class="container my-3">
+        <h2 class="display-6 fw-normal my-3 mx-3">The Feedback</h2>
+        <div class="row d-flex flex-column">
+          <div
+            class="row shadow-lg p-0 m-1 pt-1"
+            style="width: 100%; border-radius: 15px"
+          >
+            <span
+              class="col-auto d-flex flex-column align-items-center"
+              style="width: fit-content"
+            >
+              <img
+                src="/images/344-3445920_travel-logo-png-hd-transparent-png.png"
+                class="rounded-circle"
+                width="40px"
+                height="40px"
+              />
+              <h5
+                class="text-center my-0"
+                style="color: #515151; font-size: small"
+              >
+                Traveller
+              </h5> </span
+            ><span class="col-auto pt-3 px-0"
+              >Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Corrupti, illo?</span
+            >
+          </div>
+          <div
+            class="row shadow-lg p-0 m-1 pt-1"
+            style="width: 100%; border-radius: 15px"
+          >
+            <span
+              class="col-auto d-flex flex-column align-items-center"
+              style="width: fit-content"
+              onclick="deleteCards()"
+            >
+              <img
+                src="/images/767-7675966_ghost-logo-png.png"
+                class="rounded-circle"
+                width="40px"
+                height="40px"
+              />
+              <h5
+                class="text-center my-0"
+                style="color: #515151; font-size: small"
+              >
+                Ghost43
+              </h5> </span
+            ><span class="col-auto pt-3 px-0"
+              >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
+              placeat temporibus consequuntur.</span
+            >
+          </div>
+          <div
+            class="row shadow-lg p-0 m-1 pt-1"
+            style="width: 100%; border-radius: 15px"
+          >
+            <span
+              class="col-auto d-flex flex-column align-items-center"
+              style="width: fit-content"
+            >
+              <img
+                src="/images/AURORA-ALBUM-ARTWORK-1024x1024.png"
+                class="rounded-circle"
+                width="40px"
+                height="40px"
+              />
+              <h5
+                class="text-center my-0"
+                style="color: #515151; font-size: small"
+              >
+                AuroraFan
+              </h5> </span
+            ><span id="numberOfTravel" class="col-auto pt-3 px-0"
+              >Lorem ipsum dolor sit amet consectetur adipisicing.</span
+            >
+          </div>
+          <div
+            class="row shadow-lg p-0 m-1 pt-1"
+            style="width: 100%; border-radius: 15px"
+          >
+            <span
+              class="col-auto d-flex flex-column align-items-center"
+              style="width: fit-content"
+            >
+              <img
+                src="/images/ERFx2g7UcAEKy3C.jpg"
+                class="rounded-circle"
+                width="40px"
+                height="40px"
+              />
+              <h5
+                class="text-center my-0"
+                style="color: #515151; font-size: small"
+              >
+                Weekend Kun
+              </h5> </span
+            ><span class="col-9 px-0"
+              >Lorem ipsum dolor sit amet consectetur adipisicing elit. At dicta
+              tempora doloremque id, architecto quam porro iusto voluptatum,
+              cumque accusantium fugit suscipit? Placeat.</span
+            >
+          </div>
+          <div
+            class="row shadow-lg p-0 m-1 pt-1"
+            style="width: 100%; border-radius: 15px"
+          >
+            <span
+              class="col-auto d-flex flex-column align-items-center"
+              style="width: fit-content"
+            >
+              <img
+                src="/images/R-14815584-1582142083-5603.jpg"
+                class="rounded-circle"
+                width="40px"
+                height="40px"
+              />
+              <h5
+                class="text-center my-0"
+                style="color: #515151; font-size: small"
+              >
+                Best Waifu
+              </h5> </span
+            ><span class="col-auto pt-3 px-0"
+              >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
+              dolorum neque facere, hic natus omnis?</span
+            >
+          </div>
+          <div
+            class="row shadow-lg p-0 m-1 pt-1"
+            style="width: 100%; border-radius: 15px"
+          >
+            <span
+              class="col-auto d-flex flex-column align-items-center"
+              style="width: fit-content"
+            >
+              <img
+                src="/images/R-14815584-1582142083-560.jpg"
+                class="rounded-circle"
+                width="40px"
+                height="40px"
+              />
+              <h5
+                class="text-center my-0"
+                style="color: #515151; font-size: small"
+              >
+                Yesss2432
+              </h5> </span
+            ><span class="col-9 px-0"
+              >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem,
+              facere quae? Fugit minus sed aliquam obcaecati commodi blanditiis
+              pariatur autem dignissimos qui a beatae modi, neque eveniet!</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <!--------------------------------------------- THE FOOTER ------------------------------------------------>
+      <footer id="footer" class="container-fluid mt-5 text-center bg-light">
+        <div class="container p-4">
+          <section id="form">
+            <form action="">
+              <div class="row d-flex justify-content-center mt-2">
+                <div class="col-auto pt-2" style="font-weight: 600">
+                  Sign up for our newsletter
+                </div>
+                <div class="col-md-5 col-12">
+                  <input type="email" class="form-control" id="email" />
+                  <label for="email" class="form-label">Your Email</label>
+                </div>
+                <div class="col-auto">
+                  <button type="button" class="btn btn-outline-primary pt-2">
+                    Subscribe
+                  </button>
+                </div>
+              </div>
+            </form>
+          </section>
+
+          <section class="mb-3">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque
+              possimus consectetur alias temporibus animi velit maiores quo,
+              inventore aliquid nesciunt fuga. Asperiores eum quam nemo. Lorem
+              ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet
+              consectetur adipisicing.
+            </p>
+          </section>
+
+          <section id="links">
+            <div class="row">
+              <div class="col-lg-3 md-mb-0 mb-2 col-md-6">
+                <h5 class="text-uppercase">Links</h5>
+
+                <ul class="list-unstyled">
+                  <li>
+                    <a href="#" class="text-decoration-none text-dark">Link1</a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-decoration-none text-dark">Link1</a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-decoration-none text-dark">Link1</a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-decoration-none text-dark">Link1</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col-lg-3 md-mb-0 mb-2 col-md-6">
+                <h5 class="text-uppercase">Links</h5>
+
+                <ul class="list-unstyled">
+                  <li>
+                    <a href="#" class="text-decoration-none text-dark">Link1</a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-decoration-none text-dark">Link1</a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-decoration-none text-dark">Link1</a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-decoration-none text-dark">Link1</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col-lg-3 md-mb-0 mb-2 col-md-6">
+                <h5 class="text-uppercase">Links</h5>
+
+                <ul class="list-unstyled">
+                  <li>
+                    <a href="#" class="text-decoration-none text-dark">Link1</a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-decoration-none text-dark">Link1</a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-decoration-none text-dark">Link1</a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-decoration-none text-dark">Link1</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col-lg-3 md-mb-0 mb-2 col-md-6">
+                <h5 class="text-uppercase">Links</h5>
+
+                <ul class="list-unstyled">
+                  <li>
+                    <a href="#" class="text-decoration-none text-dark">Link1</a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-decoration-none text-dark">Link1</a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-decoration-none text-dark">Link1</a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-decoration-none text-dark">Link1</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="text-center p-2" style="background-color: #eeeeee">
+          <div>
+            <!-- Button trigger modal -->
+            <button
+              type="button"
+              class="btn border-0"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                style="cursor: pointer"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="bi bi-telephone-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"
+                />
+              </svg>
+              Contact Us
+            </button>
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Modal title
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="">
+                      <div class="row d-flex justify-content-center px-5">
+                        <div class="col-md-9 pl-2 text-start">
+                          <input type="email" id="email" class="form-control" />
+                          <label for="email" class="form-label"
+                            >Your Email</label
+                          >
+                        </div>
+                        <div class="col-3 p-0">
+                          <button
+                            class="d-flex align-self-start btn btn-outline-primary pt-2"
+                          >
+                            Send
+                          </button>
+                        </div>
+                      </div>
+                      <div class="form-group px-5 text-start">
+                        <textarea
+                          class="form-control"
+                          id="exampleFormControlTextarea1"
+                          rows="3"
+                          style="width: 94%"
+                        ></textarea>
+                        <label for="exampleFormControlTextarea1"
+                          >Write your message</label
+                        >
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                      Save changes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          @2022 Copyright:
+          <a href="#" class="text-decoration-none text-dark">TravelAY</a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const summerOffers =
+        document.getElementById("welcome-summer").children[1].children;
+      for (let i = 0; i < summerOffers.length; i++) {
+        summerOffers[i].innerHTML += `<span
+              class="badge bg-danger"
+              style="
+                width: 40px;
+                position: relative;
+                bottom: 266px;
+                text-align: center;
+                left: 150px;
+              "
+              >New</span
+            >`;
+      }
+
+      const deleteCards = function () {
+        const cards = document.getElementsByClassName("card");
+        for (let i = 0; i < cards.length; i++) {
+          cards[i].classList.toggle("d-none");
+        }
+      };
+
+      document.getElementById(
+        "numberOfTravel"
+      ).innerHTML += `<span style='font-weight: 500'> Number of Travels: ${
+        document.getElementsByClassName("card").length
+      }</span`;
+
+      const hideSection = function() {
+          document.getElementById('jumbotron').classList.toggle('d-none')
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
